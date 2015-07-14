@@ -3,11 +3,12 @@ module RubySpark
   class Core
     class ApiError < StandardError; end
 
-    def initialize(core_id, access_token = RubySpark.access_token)
+    def initialize(core_id, access_token = RubySpark.access_token, organization = RubySpark.organization)
       raise RubySpark::ConfigurationError.new("Access Token not defined") if access_token.nil?
 
       @access_token = access_token
-      @core_id    = core_id
+      @core_id      = core_id
+      @organization = organization
     end
 
     def info
@@ -64,7 +65,11 @@ module RubySpark
     end
 
     def base_url
-      "https://api.particle.io/v1/devices/#{@core_id}/"
+      if @organization
+        "https://api.particle.io/v1/orgs/#{@organization}/devices/#{@core_id}/"
+      else
+        "https://api.particle.io/v1/devices/#{@core_id}/"
+      end
     end
 
     def access_params

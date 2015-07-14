@@ -11,5 +11,6 @@ module RubySpark
   extend Configuration
 
   define_setting :access_token
+  define_setting :organization
   define_setting :timeout, 30
 end

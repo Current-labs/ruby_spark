@@ -34,12 +34,13 @@ Configure:
 RubySpark.configuration do |config|
   config.access_token = "spark_api_access_token"
   config.timeout      = 10.seconds # defaults to 30 seconds
+  config.organization = "particle" # if making requests on behalf of an organization
 end
 ```
 
 ### Core API
 
-To instantiate a Core, you need to pass it's `device_id`. If you have your `access_token` setup ahead of time using the `config.access_token` then the second argument is optional.
+To instantiate a Core, you need to pass its `device_id`. If you have your `access_token` setup ahead of time using the `config.access_token` then the second argument is optional.
 
 ```ruby
 core = RubySpark::Core.new("core_device_id")
