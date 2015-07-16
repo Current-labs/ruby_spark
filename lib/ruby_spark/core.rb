@@ -65,10 +65,10 @@ module RubySpark
     end
 
     def base_url
-      if @organization
-        "https://api.particle.io/v1/orgs/#{@organization}/devices/#{@core_id}/"
-      else
+      if @organization.blank?
         "https://api.particle.io/v1/devices/#{@core_id}/"
+      else
+        "https://api.particle.io/v1/orgs/#{@organization}/devices/#{@core_id}/"
       end
     end
 
